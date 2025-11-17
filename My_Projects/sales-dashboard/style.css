@@ -1,0 +1,212 @@
+:root {
+  --bg: #f4f6fa;
+  --card-bg: #ffffff;
+  --primary: #4f46e5;
+  --secondary: #6366f1;
+  --text: #333;
+  --accent: #14b8a6;
+  --hover: #f0f0f0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+body.dark {
+  --bg: #1e1e2f;
+  --card-bg: #2a2a40;
+  --primary: #8b5cf6;
+  --secondary: #a78bfa;
+  --text: #f4f4f4;
+  --accent: #06d6a0;
+  --hover: #333950;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.dashboard {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.dashboard-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+}
+
+select, button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: var(--secondary);
+}
+
+/* Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+
+.card-icon {
+  font-size: 32px;
+  margin-right: 15px;
+  color: var(--secondary);
+}
+
+.card-info h2 {
+  font-size: 22px;
+  margin: 0;
+  color: var(--primary);
+}
+
+.card-info p {
+  font-size: 14px;
+  color: var(--text);
+}
+
+/* Chart */
+.charts {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 30px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: background 0.3s, transform 0.3s;
+  animation: slideInLeft 0.8s ease-out 0.5s forwards;
+  opacity: 0;
+}
+
+.charts:hover {
+  transform: scale(1.02);
+}
+
+/* Table */
+.table-section {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: background 0.3s, transform 0.3s;
+  animation: fadeInUp 0.8s ease-out 0.7s forwards;
+  opacity: 0;
+}
+
+.table-section:hover {
+  transform: translateY(-3px);
+}
+
+.table-section h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: var(--accent);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 14px;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+}
+
+th {
+  background: var(--hover);
+  font-weight: 600;
+  color: var(--text);
+}
+
+tr:hover {
+  background-color: var(--hover);
+}
+
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card-icon {
+    margin-bottom: 10px;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+}

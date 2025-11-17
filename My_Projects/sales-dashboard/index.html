@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sales Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <div class="dashboard">
+    <header class="dashboard-header">
+      <h1>🚀 Sales Dashboard</h1>
+      <div class="controls">
+        <select id="chartFilter">
+          <option value="monthly">Monthly</option>
+          <option value="quarterly">Quarterly</option>
+          <option value="yearly">Yearly</option>
+        </select>
+        <select id="metricFilter">
+          <option value="sales">Sales</option>
+          <option value="profit">Profit</option>
+        </select>
+        <select id="chartType">
+          <option value="line">Line</option>
+          <option value="bar">Bar</option>
+        </select>
+        <button id="themeToggle">🌙 Dark Mode</button>
+      </div>
+    </header>
+
+    <section class="cards">
+      <div class="card">
+        <div class="card-icon">💰</div>
+        <div class="card-info">
+          <h2>R24,500</h2>
+          <p>Revenue</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📦</div>
+        <div class="card-info">
+          <h2>1,240</h2>
+          <p>Orders</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">👥</div>
+        <div class="card-info">
+          <h2>860</h2>
+          <p>Customers</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📈</div>
+        <div class="card-info">
+          <h2>R4,200</h2>
+          <p>Profit</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💵</div>
+        <div class="card-info">
+          <h2>R19.76</h2>
+          <p>Average Order Value</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <div class="card-info">
+          <h2>10.5%</h2>
+          <p>Yearly Growth</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="charts">
+      <canvas id="salesChart"></canvas>
+    </section>
+
+    <section class="table-section">
+      <h2>🧾 Recent Transactions</h2>
+      <form id="addTransactionForm" style="margin-bottom: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+        <input type="date" id="dateInput" required style="padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+        <input type="text" id="customerInput" placeholder="Customer" required style="padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+        <input type="text" id="itemInput" placeholder="Item" required style="padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+        <input type="number" id="amountInput" placeholder="Amount" required style="padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+        <button type="submit" style="padding: 8px 12px; border-radius: 6px; border: none; background: var(--primary); color: white;">Add Transaction</button>
+      </form>
+      <div style="margin-bottom: 15px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+        <label>Start Date:</label>
+        <input type="date" id="startDate" style="padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+        <label>End Date:</label>
+        <input type="date" id="endDate" style="padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+        <button id="filterBtn" style="padding: 8px 12px; border-radius: 6px; border: none; background: var(--primary); color: white;">Filter</button>
+      </div>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+        <input type="text" id="searchInput" placeholder="Search transactions..." style="flex: 1; padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+        <button id="exportBtn" style="margin-left: 10px; padding: 8px 12px; border-radius: 6px; border: none; background: var(--primary); color: white;">Export PDF</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Item</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody id="transactionBody">
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
